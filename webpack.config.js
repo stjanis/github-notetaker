@@ -3,7 +3,7 @@ module.exports = {
   // (react is composed of different components and there
   // is always 1 root component, that's going to render all
   // of it's children components)
-  entry: "./app/components/Main.js",
+  entry: "./app/App.js",
   // when react is done transpiling everything, tell where
   // to put out that new code
   output: {

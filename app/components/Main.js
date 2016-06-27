@@ -1,15 +1,19 @@
-let React = require('react');
-// ReactDOM - tells to render component on client, not on server
-let ReactDOM = require('react-dom');
+import React from 'react';
 
-// React.createClass - creates new React component
-let Main = React.createClass({
-  // render specifies what the UI looks for the specific element
-  render: function() {
-    return (
-      <div>Hello world!</div>
-    )
-  }
-});
+// create new React component
+const Main = (props) => {
+  return (
+    <div className="main-container">
+      <nav className="navbar navbar-default" role="navigation">
+        <div className="col-sm-7 col-sm-offset-2" style={{marginTop: 15}}>
+          MENU
+        </div>
+      </nav>
+      <div className="container">
+        {props.children}
+      </div>
+    </div>
+  )
+}
 
-ReactDOM.render(<Main />, document.getElementById('app'));
+export default Main;
