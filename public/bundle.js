@@ -178,31 +178,6 @@
 	// shim for using process in browser
 
 	var process = module.exports = {};
-
-	// cached from whatever global is present so that test runners that stub it
-	// don't break things.  But we need to wrap it in a try catch in case it is
-	// wrapped in strict mode code which doesn't define any globals.  It's inside a
-	// function because try/catches deoptimize in certain engines.
-
-	var cachedSetTimeout;
-	var cachedClearTimeout;
-
-	(function () {
-	  try {
-	    cachedSetTimeout = setTimeout;
-	  } catch (e) {
-	    cachedSetTimeout = function () {
-	      throw new Error('setTimeout is not defined');
-	    }
-	  }
-	  try {
-	    cachedClearTimeout = clearTimeout;
-	  } catch (e) {
-	    cachedClearTimeout = function () {
-	      throw new Error('clearTimeout is not defined');
-	    }
-	  }
-	} ())
 	var queue = [];
 	var draining = false;
 	var currentQueue;
@@ -227,7 +202,7 @@
 	    if (draining) {
 	        return;
 	    }
-	    var timeout = cachedSetTimeout(cleanUpNextTick);
+	    var timeout = setTimeout(cleanUpNextTick);
 	    draining = true;
 
 	    var len = queue.length;
@@ -244,7 +219,7 @@
 	    }
 	    currentQueue = null;
 	    draining = false;
-	    cachedClearTimeout(timeout);
+	    clearTimeout(timeout);
 	}
 
 	process.nextTick = function (fun) {
@@ -256,7 +231,7 @@
 	    }
 	    queue.push(new Item(fun, args));
 	    if (queue.length === 1 && !draining) {
-	        cachedSetTimeout(drainQueue, 0);
+	        setTimeout(drainQueue, 0);
 	    }
 	};
 
@@ -25994,6 +25969,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// create new React component
+	// stateless component
 	var Main = function Main(props) {
 	  return _react2.default.createElement(
 	    "div",
@@ -26063,6 +26039,18 @@
 
 	var _reactRouter2 = _interopRequireDefault(_reactRouter);
 
+	var _Repos = __webpack_require__(234);
+
+	var _Repos2 = _interopRequireDefault(_Repos);
+
+	var _UserProfile = __webpack_require__(235);
+
+	var _UserProfile2 = _interopRequireDefault(_UserProfile);
+
+	var _Notes = __webpack_require__(236);
+
+	var _Notes2 = _interopRequireDefault(_Notes);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26070,6 +26058,8 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	// stateful component
 
 	var Profile = function (_React$Component) {
 	  _inherits(Profile, _React$Component);
@@ -26080,9 +26070,11 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Profile).call(this));
 
 	    _this.state = {
-	      notes: [],
-	      bio: {},
-	      repos: []
+	      notes: [1, 2, 3],
+	      bio: {
+	        name: "Janis Stipnieks"
+	      },
+	      repos: ['a', 'b', 'c']
 	    };
 	    return _this;
 	  }
@@ -26090,23 +26082,26 @@
 	  _createClass(Profile, [{
 	    key: 'render',
 	    value: function render() {
+	      //this.props - everything that's been passed to profile.js component
+	      console.log(this.props);
+	      // ..params.username - because "username" is what we specified in routes
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'row' },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'col-md-4' },
-	          'User Profile Component'
+	          _react2.default.createElement(_UserProfile2.default, { username: this.props.params.username, bio: this.state.bio })
 	        ),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'col-md-4' },
-	          'Repos Component'
+	          _react2.default.createElement(_Repos2.default, { repos: this.state.repos })
 	        ),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'col-md-4' },
-	          'Notes Component'
+	          _react2.default.createElement(_Notes2.default, { notes: this.state.notes })
 	        )
 	      );
 	    }
@@ -26116,6 +26111,119 @@
 	}(_react2.default.Component);
 
 	exports.default = Profile;
+
+/***/ },
+/* 234 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Repos = function Repos(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'REPOS'
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      props.repos
+	    )
+	  );
+	};
+
+	exports.default = Repos;
+
+/***/ },
+/* 235 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var UserProfile = function UserProfile(props) {
+	  console.log(props);
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'USER PROFILE!'
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'Username: ',
+	      props.username
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'Bio: ',
+	      props.bio.name
+	    )
+	  );
+	};
+
+	exports.default = UserProfile;
+
+/***/ },
+/* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Notes = function Notes(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'NOTES'
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      props.notes
+	    )
+	  );
+	};
+
+	exports.default = Notes;
 
 /***/ }
 /******/ ]);

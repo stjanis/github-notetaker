@@ -1,6 +1,7 @@
 import React from 'react';
 
 // create new React component
+// stateless component
 const Main = (props) => {
   return (
     <div className="main-container">
