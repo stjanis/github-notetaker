@@ -60,14 +60,21 @@
 
 	var _routes2 = _interopRequireDefault(_routes);
 
+	var _Footer = __webpack_require__(237);
+
+	var _Footer2 = _interopRequireDefault(_Footer);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// router will be handling different routes in our app
-	_reactDom2.default.render(_react2.default.createElement(
+	(0, _reactDom.render)(_react2.default.createElement(
 	  _reactRouter.Router,
 	  { history: _reactRouter.hashHistory },
 	  _routes2.default
 	), document.getElementById('app'));
+
+	// just some random extra element
+	(0, _reactDom.render)(_react2.default.createElement(_Footer2.default, null), document.getElementById('footer'));
 
 /***/ },
 /* 1 */
@@ -26224,6 +26231,28 @@
 	};
 
 	exports.default = Notes;
+
+/***/ },
+/* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Footer = function Footer() {
+	  return _react2.default.createElement("div", { className: "footer-component" });
+	};
+
+	exports.default = Footer;
 
 /***/ }
 /******/ ]);
