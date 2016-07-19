@@ -1,7 +1,6 @@
 import React from 'react';
 
 const UserProfile = (props) => {
-  console.log(props);
   return (
     <div>
       <p>USER PROFILE!</p>
