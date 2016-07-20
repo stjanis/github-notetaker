@@ -60,7 +60,7 @@
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _Footer = __webpack_require__(239);
+	var _Footer = __webpack_require__(240);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -26081,11 +26081,11 @@
 
 	var _Notes2 = _interopRequireDefault(_Notes);
 
-	var _reactfire = __webpack_require__(237);
+	var _reactfire = __webpack_require__(238);
 
 	var _reactfire2 = _interopRequireDefault(_reactfire);
 
-	var _firebase = __webpack_require__(238);
+	var _firebase = __webpack_require__(239);
 
 	var _firebase2 = _interopRequireDefault(_firebase);
 
@@ -26217,6 +26217,16 @@
 	  );
 	};
 
+	// propTypes allow to validate the props
+	// that are being passed in, make sure if they have
+	// right type and if they are required.
+	// This allow to make sure that our components are used in a way
+	// they are intended to be used
+	Repos.propTypes = {
+	  username: _react2.default.PropTypes.string.isRequired,
+	  repos: _react2.default.PropTypes.array.isRequired
+	};
+
 	exports.default = Repos;
 
 /***/ },
@@ -26259,6 +26269,11 @@
 	  );
 	};
 
+	UserProfile.propTypes = {
+	  username: _react2.default.PropTypes.string.isRequired,
+	  bio: _react2.default.PropTypes.object.isRequired
+	};
+
 	exports.default = UserProfile;
 
 /***/ },
@@ -26275,12 +26290,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _NotesList = __webpack_require__(240);
+	var _NotesList = __webpack_require__(237);
 
 	var _NotesList2 = _interopRequireDefault(_NotesList);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// use tylermcginnis as username for test
 	var Notes = function Notes(props) {
 	  return _react2.default.createElement(
 	    'div',
@@ -26295,10 +26311,48 @@
 	  );
 	};
 
+	Notes.propTypes = {
+	  username: _react2.default.PropTypes.string.isRequired,
+	  notes: _react2.default.PropTypes.array.isRequired
+	};
+
 	exports.default = Notes;
 
 /***/ },
 /* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var NotesList = function NotesList(props) {
+	  var notes = props.notes.map(function (note, index) {
+	    return _react2.default.createElement(
+	      'li',
+	      { className: 'list-group-item', key: index },
+	      note['.value']
+	    );
+	  });
+	  return _react2.default.createElement(
+	    'ul',
+	    { className: 'list-group' },
+	    notes
+	  );
+	};
+
+	exports.default = NotesList;
+
+/***/ },
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -26704,7 +26758,7 @@
 
 
 /***/ },
-/* 238 */
+/* 239 */
 /***/ function(module, exports) {
 
 	/*! @license Firebase v2.3.2
@@ -26978,7 +27032,7 @@
 
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26998,39 +27052,6 @@
 	};
 
 	exports.default = Footer;
-
-/***/ },
-/* 240 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var NotesList = function NotesList(props) {
-	  var notes = props.notes.map(function (note, index) {
-	    return _react2.default.createElement(
-	      'li',
-	      { className: 'list-group-item', key: index },
-	      note['.value']
-	    );
-	  });
-	  return _react2.default.createElement(
-	    'ul',
-	    { className: 'list-group' },
-	    notes
-	  );
-	};
-
-	exports.default = NotesList;
 
 /***/ }
 /******/ ]);
