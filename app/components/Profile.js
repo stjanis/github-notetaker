@@ -71,8 +71,11 @@ const Profile = React.createClass ({
     this.unbind('notes');
   },
   render: function() {
+    console.log(this.state);
     //this.props - everything that's been passed to profile.js component
     // ..params.username - because "username" is what we specified in routes
+
+    // to find everything that's been passed to component => console.log(this.props)
     return (
       <div className="row">
         <div className="col-md-4">

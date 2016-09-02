@@ -60,7 +60,7 @@
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _Footer = __webpack_require__(239);
+	var _Footer = __webpack_require__(240);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -26081,11 +26081,11 @@
 
 	var _Notes2 = _interopRequireDefault(_Notes);
 
-	var _reactfire = __webpack_require__(237);
+	var _reactfire = __webpack_require__(238);
 
 	var _reactfire2 = _interopRequireDefault(_reactfire);
 
-	var _firebase = __webpack_require__(238);
+	var _firebase = __webpack_require__(239);
 
 	var _firebase2 = _interopRequireDefault(_firebase);
 
@@ -26158,8 +26158,11 @@
 	    this.unbind('notes');
 	  },
 	  render: function render() {
+	    console.log(this.state);
 	    //this.props - everything that's been passed to profile.js component
 	    // ..params.username - because "username" is what we specified in routes
+
+	    // to find everything that's been passed to component => console.log(this.props)
 	    return _react2.default.createElement(
 	      'div',
 	      { className: 'row' },
@@ -26275,7 +26278,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _NotesList = __webpack_require__(240);
+	var _NotesList = __webpack_require__(237);
 
 	var _NotesList2 = _interopRequireDefault(_NotesList);
 
@@ -26299,6 +26302,39 @@
 
 /***/ },
 /* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var NotesList = function NotesList(props) {
+	  var notes = props.notes.map(function (note, index) {
+	    return _react2.default.createElement(
+	      'li',
+	      { className: 'list-group-item', key: index },
+	      note['.value']
+	    );
+	  });
+	  return _react2.default.createElement(
+	    'ul',
+	    { className: 'list-group' },
+	    notes
+	  );
+	};
+
+	exports.default = NotesList;
+
+/***/ },
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -26704,7 +26740,7 @@
 
 
 /***/ },
-/* 238 */
+/* 239 */
 /***/ function(module, exports) {
 
 	/*! @license Firebase v2.3.2
@@ -26978,7 +27014,7 @@
 
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26998,39 +27034,6 @@
 	};
 
 	exports.default = Footer;
-
-/***/ },
-/* 240 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var NotesList = function NotesList(props) {
-	  var notes = props.notes.map(function (note, index) {
-	    return _react2.default.createElement(
-	      'li',
-	      { className: 'list-group-item', key: index },
-	      note['.value']
-	    );
-	  });
-	  return _react2.default.createElement(
-	    'ul',
-	    { className: 'list-group' },
-	    notes
-	  );
-	};
-
-	exports.default = NotesList;
 
 /***/ }
 /******/ ]);
