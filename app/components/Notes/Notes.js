@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import NotesList from './NotesList';
 
 // use tylermcginnis as username for test
@@ -12,8 +12,8 @@ const Notes = (props) => {
 };
 
 Notes.propTypes = {
-  username: React.PropTypes.string.isRequired,
-  notes: React.PropTypes.array.isRequired
+  username: PropTypes.string.isRequired,
+  notes: PropTypes.array.isRequired
 }
 
 export default Notes;

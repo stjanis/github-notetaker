@@ -26226,8 +26226,8 @@
 	// This allow to make sure that our components are used in a way
 	// they are intended to be used
 	Repos.propTypes = {
-	  username: _react2.default.PropTypes.string.isRequired,
-	  repos: _react2.default.PropTypes.array.isRequired
+	  username: _react.PropTypes.string.isRequired,
+	  repos: _react.PropTypes.array.isRequired
 	};
 
 	exports.default = Repos;
@@ -26273,8 +26273,8 @@
 	};
 
 	UserProfile.propTypes = {
-	  username: _react2.default.PropTypes.string.isRequired,
-	  bio: _react2.default.PropTypes.object.isRequired
+	  username: _react.PropTypes.string.isRequired,
+	  bio: _react.PropTypes.object.isRequired
 	};
 
 	exports.default = UserProfile;
@@ -26315,8 +26315,8 @@
 	};
 
 	Notes.propTypes = {
-	  username: _react2.default.PropTypes.string.isRequired,
-	  notes: _react2.default.PropTypes.array.isRequired
+	  username: _react.PropTypes.string.isRequired,
+	  notes: _react.PropTypes.array.isRequired
 	};
 
 	exports.default = Notes;

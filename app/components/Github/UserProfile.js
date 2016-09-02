@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 
 const UserProfile = (props) => {
   return (
@@ -11,8 +11,8 @@ const UserProfile = (props) => {
 };
 
 UserProfile.propTypes = {
-  username: React.PropTypes.string.isRequired,
-  bio: React.PropTypes.object.isRequired
+  username: PropTypes.string.isRequired,
+  bio: PropTypes.object.isRequired
 }
 
 export default UserProfile;

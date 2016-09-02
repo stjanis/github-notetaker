@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 
 const Repos = (props) => {
   return (
@@ -15,8 +15,8 @@ const Repos = (props) => {
 // This allow to make sure that our components are used in a way
 // they are intended to be used
 Repos.propTypes = {
-  username: React.PropTypes.string.isRequired,
-  repos: React.PropTypes.array.isRequired
+  username: PropTypes.string.isRequired,
+  repos: PropTypes.array.isRequired
 }
 
 export default Repos;
