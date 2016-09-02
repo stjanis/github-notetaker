@@ -1,6 +1,7 @@
 import React from 'react';
 import NotesList from './NotesList';
 
+// use tylermcginnis as username for test
 const Notes = (props) => {
   return (
     <div>
@@ -9,5 +10,10 @@ const Notes = (props) => {
     </div>
   );
 };
+
+Notes.propTypes = {
+  username: React.PropTypes.string.isRequired,
+  notes: React.PropTypes.array.isRequired
+}
 
 export default Notes;

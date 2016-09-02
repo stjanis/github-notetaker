@@ -26220,6 +26220,16 @@
 	  );
 	};
 
+	// propTypes allow to validate the props
+	// that are being passed in, make sure if they have
+	// right type and if they are required.
+	// This allow to make sure that our components are used in a way
+	// they are intended to be used
+	Repos.propTypes = {
+	  username: _react2.default.PropTypes.string.isRequired,
+	  repos: _react2.default.PropTypes.array.isRequired
+	};
+
 	exports.default = Repos;
 
 /***/ },
@@ -26262,6 +26272,11 @@
 	  );
 	};
 
+	UserProfile.propTypes = {
+	  username: _react2.default.PropTypes.string.isRequired,
+	  bio: _react2.default.PropTypes.object.isRequired
+	};
+
 	exports.default = UserProfile;
 
 /***/ },
@@ -26284,6 +26299,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// use tylermcginnis as username for test
 	var Notes = function Notes(props) {
 	  return _react2.default.createElement(
 	    'div',
@@ -26296,6 +26312,11 @@
 	    ),
 	    _react2.default.createElement(_NotesList2.default, { notes: props.notes })
 	  );
+	};
+
+	Notes.propTypes = {
+	  username: _react2.default.PropTypes.string.isRequired,
+	  notes: _react2.default.PropTypes.array.isRequired
 	};
 
 	exports.default = Notes;
