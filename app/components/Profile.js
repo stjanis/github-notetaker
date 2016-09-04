@@ -5,6 +5,7 @@ import UserProfile from './Github/UserProfile';
 import Notes from './Notes/Notes';
 import ReactFireMixin from 'reactfire';
 import Firebase from 'firebase';
+import jQuery from 'jQuery';
 
 // stateful component
 // class Profile extends React.Component {
@@ -54,10 +55,15 @@ const Profile = React.createClass ({
       repos: ['a', 'b', 'c']
     }
   },
+  componentWillMount: function() {
+    // apparently doesn't work if other component also needs to be rendered
+    // jQuery('.loader').addClass('loader--active');
+  },
   // componentDidMount will be called right after component is mounted
   // here we can do all out ajax requests, firebase.. etc
   // so when component mounts the below callback will be called
   componentDidMount: function() {
+    // jQuery('.loader').removeClass('loader--active');
     // we create new instance of firebase and pass it the url where our project is located
     this.ref = new Firebase('https://github-note-taker.firebaseio.com');
     let childRef = this.ref.child(this.props.params.username);
@@ -70,8 +76,11 @@ const Profile = React.createClass ({
     // unbind will remove that listener, so it's not trying to updated our state even if the component has moved on
     this.unbind('notes');
   },
+  handleAddNote: function(newNote) {
+    // update firebase with new note
+    this.ref.child(this.props.params.username).child(this.state.notes.length).set(newNote);
+  },
   render: function() {
-    console.log(this.state);
     //this.props - everything that's been passed to profile.js component
     // ..params.username - because "username" is what we specified in routes
 
@@ -85,7 +94,10 @@ const Profile = React.createClass ({
           <Repos username={this.props.params.username} repos={this.state.repos} />
         </div>
         <div className="col-md-4">
-          <Notes username={this.props.params.username} notes={this.state.notes} />
+          <Notes
+            username={this.props.params.username}
+            notes={this.state.notes}
+            addNote={this.handleAddNote} />
         </div>
       </div>
     );

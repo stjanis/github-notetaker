@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {render} from 'react-dom'
+import ReactDOM, {render} from 'react-dom';
 import { Router, hashHistory } from 'react-router';
 import routes from './config/routes';
 import Footer from './components/Footer';
