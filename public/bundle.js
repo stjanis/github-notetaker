@@ -25988,7 +25988,7 @@
 /* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -25998,32 +25998,39 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _SearchGitHub = __webpack_require__(243);
+
+	var _SearchGitHub2 = _interopRequireDefault(_SearchGitHub);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// create new React component
 	// stateless component
 	var Main = function Main(props) {
 	  return _react2.default.createElement(
-	    "div",
-	    { className: "main-container" },
+	    'div',
+	    { className: 'main-container' },
 	    _react2.default.createElement(
-	      "nav",
-	      { className: "navbar navbar-default", role: "navigation" },
+	      'nav',
+	      { className: 'navbar navbar-default', role: 'navigation' },
 	      _react2.default.createElement(
-	        "div",
-	        { className: "col-sm-7 col-sm-offset-2", style: { marginTop: 15 } },
-	        "MENU"
+	        'div',
+	        { className: 'col-sm-7 col-sm-offset-2', style: { marginTop: 15 } },
+	        _react2.default.createElement(_SearchGitHub2.default, null)
 	      )
 	    ),
 	    _react2.default.createElement(
-	      "div",
-	      { className: "container" },
+	      'div',
+	      { className: 'container' },
 	      props.children
 	    )
 	  );
 	};
 
 	exports.default = Main;
+
+	// profiles:
+	// jakelingwall
 
 /***/ },
 /* 232 */
@@ -37229,6 +37236,68 @@
 	});
 
 	exports.default = AddNote;
+
+/***/ },
+/* 243 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Router = __webpack_require__(168);
+
+	var SearchGitHub = _react2.default.createClass({
+	  displayName: 'SearchGitHub',
+
+	  mixins: [Router.History],
+	  getRef: function getRef(ref) {
+	    this.usernameRef = ref;
+	  },
+	  handleSubmit: function handleSubmit() {
+	    // set username value from usernameRef
+	    var username = this.usernameRef.value;
+	    // reset val to empty string
+	    this.usernameRef.value = '';
+	    // pushState allows transition to new route
+	    this.history.pushState(null, 'profile/' + username);
+	  },
+	  render: function render() {
+	    console.log(Router.history);
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'col-sm-12' },
+	      _react2.default.createElement(
+	        'form',
+	        { onSubmit: this.handleSubmit },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'form-group col-sm-7' },
+	          _react2.default.createElement('input', { type: 'text', className: 'form-control', ref: this.getRef })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'form-group col-sm-5' },
+	          _react2.default.createElement(
+	            'button',
+	            { type: 'submit', className: 'btn btn-block btn-primary' },
+	            'Search GitHub'
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+	exports.default = SearchGitHub;
 
 /***/ }
 /******/ ]);
