@@ -26284,7 +26284,7 @@
 /* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -26297,14 +26297,38 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Repos = function Repos(props) {
-	  console.log(props.repos);
+	  var repos = props.repos.map(function (repo, index) {
+	    return _react2.default.createElement(
+	      "li",
+	      { className: "list-group-item", key: index },
+	      repo.html_url && _react2.default.createElement(
+	        "h4",
+	        null,
+	        _react2.default.createElement(
+	          "a",
+	          { href: repo.html_url },
+	          repo.name
+	        )
+	      ),
+	      repo.description && _react2.default.createElement(
+	        "p",
+	        null,
+	        repo.description
+	      )
+	    );
+	  });
 	  return _react2.default.createElement(
-	    'div',
+	    "div",
 	    null,
 	    _react2.default.createElement(
-	      'p',
+	      "h3",
 	      null,
-	      'REPOS'
+	      "User Repos"
+	    ),
+	    _react2.default.createElement(
+	      "ul",
+	      { className: "list-group" },
+	      repos
 	    )
 	  );
 	};
@@ -26325,7 +26349,7 @@
 /* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -26338,20 +26362,73 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var UserProfile = function UserProfile(props) {
-	  console.log(props.bio);
 	  return _react2.default.createElement(
-	    'div',
+	    "div",
 	    null,
-	    _react2.default.createElement(
-	      'p',
-	      null,
-	      'USER PROFILE!'
+	    props.bio.avatar_url && _react2.default.createElement(
+	      "li",
+	      { className: "list-group-item" },
+	      " ",
+	      _react2.default.createElement("img", { src: props.bio.avatar_url, className: "img-rounded img-responsive" })
 	    ),
-	    _react2.default.createElement(
-	      'p',
-	      null,
-	      'Username: ',
-	      props.username
+	    props.bio.name && _react2.default.createElement(
+	      "li",
+	      { className: "list-group-item" },
+	      "Name: ",
+	      props.bio.name
+	    ),
+	    props.bio.login && _react2.default.createElement(
+	      "li",
+	      { className: "list-group-item" },
+	      "Username: ",
+	      props.bio.login
+	    ),
+	    props.bio.email && _react2.default.createElement(
+	      "li",
+	      { className: "list-group-item" },
+	      "Email: ",
+	      props.bio.email
+	    ),
+	    props.bio.location && _react2.default.createElement(
+	      "li",
+	      { className: "list-group-item" },
+	      "Location: ",
+	      props.bio.location
+	    ),
+	    props.bio.company && _react2.default.createElement(
+	      "li",
+	      { className: "list-group-item" },
+	      "Company: ",
+	      props.bio.company
+	    ),
+	    props.bio.followers && _react2.default.createElement(
+	      "li",
+	      { className: "list-group-item" },
+	      "Followers: ",
+	      props.bio.followers
+	    ),
+	    props.bio.following && _react2.default.createElement(
+	      "li",
+	      { className: "list-group-item" },
+	      "Following: ",
+	      props.bio.following
+	    ),
+	    props.bio.following && _react2.default.createElement(
+	      "li",
+	      { className: "list-group-item" },
+	      "Public Repos: ",
+	      props.bio.public_repos
+	    ),
+	    props.bio.blog && _react2.default.createElement(
+	      "li",
+	      { className: "list-group-item" },
+	      "Blog: ",
+	      _react2.default.createElement(
+	        "a",
+	        { href: props.bio.blog },
+	        " ",
+	        props.bio.blog
+	      )
 	    )
 	  );
 	};
