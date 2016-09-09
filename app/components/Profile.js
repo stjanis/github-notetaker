@@ -65,12 +65,28 @@ const Profile = React.createClass ({
     // jQuery('.loader').removeClass('loader--active');
     // we create new instance of firebase and pass it the url where our project is located
     this.ref = new Firebase('https://github-note-taker.firebaseio.com');
-    let childRef = this.ref.child(this.props.params.username);
+    this.init(this.props.params.username);
+  },
+  // when component will receive new props, the defined
+  // callback function will be invoked
+  componentWillReceiveProps: function(nextProps) {
+    // firebase doesn't allow to bind to multiple things
+    this.unbind('notes');
+    this.init(nextProps.params.username);
+  },
+  componentWillUnmount: function() {
+    // we don't want to add all firebase listeners and never get rid of those
+    // unbind will remove that listener, so it's not trying to updated our state even if the component has moved on
+    this.unbind('notes');
+  },
+  // set up a listener to new user, whenever we receive new props
+  init: function(username) {
+    let childRef = this.ref.child(username);
     // bindAsArray method added with ReactFireMixin
     // it takes 2 arguments - 1. refernce to firebase. 2. properto of the state we want to bind the firebase to
     this.bindAsArray(childRef, 'notes');
 
-    helpers.getGithubInfo(this.props.params.username)
+    helpers.getGithubInfo(username)
     .then(function(data){
         this.setState({
           bio: data.bio,
@@ -79,11 +95,6 @@ const Profile = React.createClass ({
       }.bind(this))
       // for reference on this keyword check:
       // egghead.io/playlists/the-this-key-word-250c37d9
-  },
-  componentWillUnmount: function() {
-    // we don't want to add all firebase listeners and never get rid of those
-    // unbind will remove that listener, so it's not trying to updated our state even if the component has moved on
-    this.unbind('notes');
   },
   handleAddNote: function(newNote) {
     // update firebase with new note

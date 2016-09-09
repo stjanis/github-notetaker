@@ -12,7 +12,7 @@ const SearchGitHub = React.createClass({
     // reset val to empty string
     this.usernameRef.value = '';
     // pushState allows transition to new route
-    this.history.pushState(null, 'profile/' + username);
+    this.history.pushState(null, '/profile/' + username);
   },
   render: function() {
     console.log(Router.history);
