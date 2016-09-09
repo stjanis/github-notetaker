@@ -5,7 +5,8 @@ import UserProfile from './Github/UserProfile';
 import Notes from './Notes/Notes';
 import ReactFireMixin from 'reactfire';
 import Firebase from 'firebase';
-import jQuery from 'jQuery';
+import helpers from '../utils/helpers';
+// import jQuery from 'jQuery';
 
 // stateful component
 // class Profile extends React.Component {
@@ -49,10 +50,8 @@ const Profile = React.createClass ({
   getInitialState: function() {
     return {
       notes: [1, 2, 3],
-      bio: {
-        name: "Janis Stipnieks"
-      },
-      repos: ['a', 'b', 'c']
+      bio: {},
+      repos: []
     }
   },
   componentWillMount: function() {
@@ -70,6 +69,16 @@ const Profile = React.createClass ({
     // bindAsArray method added with ReactFireMixin
     // it takes 2 arguments - 1. refernce to firebase. 2. properto of the state we want to bind the firebase to
     this.bindAsArray(childRef, 'notes');
+
+    helpers.getGithubInfo(this.props.params.username)
+    .then(function(data){
+        this.setState({
+          bio: data.bio,
+          repos: data.repos
+        })
+      }.bind(this))
+      // for reference on this keyword check:
+      // egghead.io/playlists/the-this-key-word-250c37d9
   },
   componentWillUnmount: function() {
     // we don't want to add all firebase listeners and never get rid of those

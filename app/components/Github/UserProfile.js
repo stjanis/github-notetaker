@@ -1,11 +1,11 @@
 import React, {PropTypes} from 'react';
 
 const UserProfile = (props) => {
+  console.log(props.bio);
   return (
     <div>
       <p>USER PROFILE!</p>
       <p>Username: {props.username}</p>
-      <p>Bio: {props.bio.name}</p>
     </div>
   );
 };

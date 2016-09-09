@@ -1,10 +1,10 @@
 import React, {PropTypes} from 'react';
 
 const Repos = (props) => {
+  console.log(props.repos);
   return (
     <div>
       <p>REPOS</p>
-      <p>{props.repos}</p>
     </div>
   );
 };
