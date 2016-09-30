@@ -1,11 +1,8 @@
 import React from 'react';
 
-const Home = () => {
-  return (
-    <h2 className="text-center">
-      Search by GitHub Username Above
-    </h2>
-  )
-}
+const Home = () =>
+  <h2 className="text-center">
+    Search by GitHub Username Above
+  </h2>
 
 export default Home;
