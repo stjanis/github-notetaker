@@ -6,7 +6,7 @@ import React from 'react';
 import Main from '../components/Main';
 import Home from '../components/Home';
 import Profile from '../components/Profile';
-import { Router, Route, IndexRoute } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 
 // IndexRoute - "default path". basically IndexRoute says "specify or
 // activate this component, if none of the other routes match"
