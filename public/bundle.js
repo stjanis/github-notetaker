@@ -26310,8 +26310,10 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Repos = function Repos(props) {
-	  var repos = props.repos.map(function (repo, index) {
+	var Repos = function Repos(_ref) {
+	  var repos = _ref.repos;
+
+	  var reposLi = repos.map(function (repo, index) {
 	    return _react2.default.createElement(
 	      "li",
 	      { className: "list-group-item", key: index },
@@ -26342,7 +26344,7 @@
 	    _react2.default.createElement(
 	      "ul",
 	      { className: "list-group" },
-	      repos
+	      reposLi
 	    )
 	  );
 	};
