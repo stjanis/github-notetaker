@@ -3,16 +3,16 @@ import NotesList from './NotesList';
 import AddNote from './AddNote';
 
 // use tylermcginnis as username for test
-const Notes = (props) => {
+const Notes = ({username, addNote, notes}) => {
   return (
     <div>
-      <h3>Notes for {props.username}</h3>
+      <h3>Notes for {username}</h3>
       <AddNote
-        username={props.username}
-        addNote={props.addNote}
+        username={username}
+        addNote={addNote}
       />
       <span className="loader"></span>
-      <NotesList notes={props.notes} />
+      <NotesList notes={notes} />
     </div>
   );
 };

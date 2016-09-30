@@ -1,46 +1,32 @@
-import React, {PropTypes} from 'react';
+import React, {PropTypes, Component} from 'react';
 
-// const AddNote = (props) => {
-//   // ref - nametag that you give to an input field so you can access that value later
-//   function setRef(ref) {
-//     this.note = ref;
-//   };
-//   return (
-//     <div className="input-group">
-//       <input type="text" className="form-control" placeholder="Add New Note" ref={this.setRef} />
-//     </div>
-//   );
-// };
-//
-// AddNote.propTypes = {
-//   username: PropTypes.string.isRequired,
-//   addNote: PropTypes.func.isRequired
-// };
-
-// @TODO - refactoring
-const AddNote = React.createClass ({
-  propTypes: {
-    username: PropTypes.string.isRequired,
-    addNote: PropTypes.func.isRequired
-  },
-  setRef: function(ref) {
+class AddNote extends Component {
+  setRef(ref) {
     this.note = ref;
-  },
-  handleSubmit: function() {
+  }
+
+  handleSubmit() {
     let newNote = this.note.value;
     this.note.value = "";
     this.props.addNote(newNote);
-  },
-  render: function() {
+  }
+
+  // set correct context for "this" in onClick and ref (by => function in this case)
+  render() {
     return (
       <div className="input-group">
-        <input type="text" className="form-control" placeholder="Add New Note" ref={this.setRef} />
+        <input type="text" className="form-control" placeholder="Add New Note" ref={(ref) => this.setRef(ref)} />
         <span className="input-group-btn">
-          <button className="btn btn-default" type="button" onClick={this.handleSubmit}>Submit</button>
+          <button className="btn btn-default" type="button" onClick={() => this.handleSubmit()}>Submit</button>
         </span>
       </div>
     );
   }
-});
+}
+
+AddNote.propTypes = {
+  username: PropTypes.string.isRequired,
+  addNote: PropTypes.func.isRequired
+}
 
 export default AddNote;
