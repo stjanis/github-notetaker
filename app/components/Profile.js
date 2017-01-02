@@ -3,41 +3,58 @@ import Repos from './Github/Repos';
 import UserProfile from './Github/UserProfile';
 import Notes from './Notes/Notes';
 import helpers from '../utils/helpers';
+import Rebase from 're-base';
+
+// first we need to define base URL for Rebase
+const base = Rebase.createClass({
+  apiKey: "",
+  authDomain: "",
+  databaseURL: 'https://github-note-taker.firebaseio.com/',
+  storageBucket: ""
+});
+// this will return bunch of methods for better
+// interfacing with firebase
 
 class Profile extends Component {
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+    this.state = {
       notes: [1, 2, 3],
       bio: {},
       repos: []
-    }
+    };
   }
 
   // componentDidMount will be called right after component is mounted
   // here we can do all out ajax requests, firebase.. etc
   // so when component mounts the below callback will be called
   componentDidMount() {
-
     this.init(this.props.params.username);
   }
 
   // when component will receive new props, the defined
   // callback function will be invoked
   componentWillReceiveProps(nextProps) {
-
+    base.removeBinding(this.ref);
     this.init(nextProps.params.username);
   }
 
-  componentWillUnmount: function() {
-
+  componentWillUnmount() {
+    // remove binding if we leave page, switch username etc.
+    base.removeBinding(this.ref);
   }
 
   // set up a listener to new user, whenever we receive new props
   init(username) {
-    let childRef = this.ref.child(username);
-    // bindAsArray method added with ReactFireMixin
-    // it takes 2 arguments - 1. refernce to firebase. 2. properto of the state we want to bind the firebase to
-    this.bindAsArray(childRef, 'notes');
+    this.ref = base.bindToState(username, {
+      context: this,
+      asArray: true,
+      state: 'notes'
+    });
+    // bindToState allows to bind a property on your state (specifically this.notes property)
+    // to an endpoint in firabase
+    // 1. property - endpoint in firabase, you want to bind to
+    // 2. property - options (for more check: https://github.com/tylermcginnis/re-base#bindtostateendpoint-options)
 
     helpers.getGithubInfo(username)
     .then(function(data){
@@ -51,7 +68,10 @@ class Profile extends Component {
   }
 
   handleAddNote(newNote) {
-    
+    // https://github.com/tylermcginnis/re-base#postendpoint-options
+    base.post(this.props.params.username, {
+      data: this.state.notes.concat([newNote])
+    });
   }
 
   render() {
@@ -71,7 +91,7 @@ class Profile extends Component {
           <Notes
             username={this.props.params.username}
             notes={this.state.notes}
-            addNote={this.handleAddNote} />
+            addNote={(newNote) => this.handleAddNote(newNote)} />
         </div>
       </div>
     );
