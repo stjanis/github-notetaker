@@ -26073,7 +26073,6 @@
 	var Main = function Main(_ref) {
 	  var children = _ref.children;
 	  var history = _ref.history;
-
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'main-container' },
@@ -26576,7 +26575,6 @@
 	  var username = _ref.username;
 	  var addNote = _ref.addNote;
 	  var notes = _ref.notes;
-
 	  return _react2.default.createElement(
 	    'div',
 	    null,
@@ -26629,6 +26627,7 @@
 	      note
 	    );
 	  });
+
 	  return _react2.default.createElement(
 	    "ul",
 	    { className: "list-group" },
